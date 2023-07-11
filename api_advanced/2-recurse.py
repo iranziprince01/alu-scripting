@@ -8,6 +8,7 @@ the function should return None.
 
 import requests
 
+
 def recurse(subreddit, hot_list=[], after=""):
     """
     Queries the Reddit API and returns
@@ -33,4 +34,4 @@ def recurse(subreddit, hot_list=[], after=""):
         else:
             return recurse(subreddit, hot_list, after)
     else:
-        return "OK"
+        return None
