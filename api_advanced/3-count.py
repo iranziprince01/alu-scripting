@@ -1,18 +1,10 @@
-#!/usr/bin/python3
-""" Module for a function that queries the Reddit API recursively."""
-
-
 import requests
 
 
-def count_words(subreddit, word_list, after='', word_dict={}):
-    """ A function that queries the Reddit API parses the title of
-    all hot articles, and prints a sorted count of given keywords
-    (case-insensitive, delimited by spaces.
-    Javascript should count as javascript, but java should not).
-    If no posts match or the subreddit is invalid, it prints nothing.
-    """
-
+def count_words(subreddit, word_list, after='', word_dict=None):
+    if word_dict is None:
+        word_dict = {}
+    
     if not word_dict:
         for word in word_list:
             if word.lower() not in word_dict:
@@ -28,8 +20,7 @@ def count_words(subreddit, word_list, after='', word_dict={}):
     url = 'https://www.reddit.com/r/{}/hot/.json'.format(subreddit)
     header = {'user-agent': 'redquery'}
     parameters = {'limit': 100, 'after': after}
-    response = requests.get(url, headers=header, params=parameters,
-                            allow_redirects=False)
+    response = requests.get(url, headers=header, params=parameters, allow_redirects=False)
 
     if response.status_code != 200:
         return None
