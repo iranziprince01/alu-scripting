@@ -40,4 +40,4 @@ def count_words(subreddit, word_list, found_list=[], after=None):
                                      reverse=True):
                 print('{}: {}'.format(key, value))
     else:
-        return
+        return 'OK'
